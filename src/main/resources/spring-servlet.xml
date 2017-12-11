@@ -15,7 +15,10 @@
 	<!-- 自动注册DefaultAnnotationHandlerMapping与AnnotationMethodHandlerAdapter 两个bean,是spring MVC为@Controllers分发请求所必须的 -->
 	<mvc:annotation-driven />
 <!-- 2.扫描Controller -->
-	<context:component-scan base-package="com.mavendemo.springmvc.controller" />
+	<context:component-scan base-package="com.mavendemo.springmvc.controller">
+		<context:exclude-filter type="annotation"  expression="org.springframework.stereotype.Service" />
+		<context:exclude-filter type="annotation"  expression="org.springframework.stereotype.Repository" />
+	</context:component-scan>
 <!-- 3.配置controller方法中对return的jsp或freemark页面 -->
 	<!-- 3.1.配置freemark -->
 	<bean id="FMViewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">

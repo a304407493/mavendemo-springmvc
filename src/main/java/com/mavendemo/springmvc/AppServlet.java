@@ -18,6 +18,7 @@ public class AppServlet extends HttpServlet {
     private final static Logger LOGGER =  LoggerFactory.getLogger(AppServlet.class);
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doPost(request, response);
 		System.out.println("hello");
 		LOGGER.debug("{} {} a debug message.",new Object[]{"This","is"});
         LOGGER.info("{} {} a info message.",new Object[]{"This","is"});
@@ -26,7 +27,6 @@ public class AppServlet extends HttpServlet {
         ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(this.getServletContext());
         IAppService appService = context.getBean("appService",IAppService.class);
         appService.processLog();
-		doPost(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
